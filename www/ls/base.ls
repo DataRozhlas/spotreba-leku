@@ -32,12 +32,14 @@ fields =
   "K PORODU"
   "BOLEST JINÁ"
 binData = {}
-for line, index in ig.data.binData.split "\n"
-  continue unless index
+for line, lineIndex in ig.data.binData.split "\n"
+  continue unless lineIndex
   cells = line.split "\t"
   item = binData[cells.0] = {}
-  for field, index in fields
-    item[field] = parseFloat cells[index]
+  for field, fieldIndex in fields
+    item[field] = parseFloat cells[fieldIndex]
+    if fieldIndex > 6
+      item[field + "_r"] = item[field] / item["count_all"]
 
 map = new ig.Map ig.containers.base, binData
   ..setView fields.1
