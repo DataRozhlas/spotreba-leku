@@ -1,7 +1,6 @@
 class ig.InfoBar
-  (@baseElement, fields) ->
+  (@baseElement, @fields) ->
     ig.Events @
-    @fields = fields.slice 7 .map (name) -> {name}
     @element = @baseElement.append \div
       ..attr \id \infoBar
     itemsContainer = @element.append \div
@@ -12,9 +11,13 @@ class ig.InfoBar
       ..attr \class "item"
       ..style \top (d, i) ~> "#{i * itemHeight}px"
       ..append \h2 .html (.name)
+      ..on \mousedown -> d3.event.preventDefault!
       ..on \click ->
         self.items.classed \active no
         @className += " active"
         self.emit \clicked it
+    @items
+      .filter (d, i) -> i is 0
+      .classed \active yes
 
 

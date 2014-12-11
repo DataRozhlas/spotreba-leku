@@ -42,6 +42,13 @@ for line, lineIndex in ig.data.binData.split "\n"
       item[field + "_r"] = item[field] / item["count_all"]
 container = d3.select ig.containers.base
 map = new ig.Map ig.containers.base, binData
-  # ..setView fields.1
+  ..setView fields.1
+infobarFields = (fields[1, 3] ++ fields.slice 7).map (code) ->
+  ig.fieldCodesToNames[code]
 
-infoBar = new ig.InfoBar container, fields
+infoBar = new ig.InfoBar container, infobarFields
+  ..on \clicked (field) ~>
+    if "dojezdy" == field.code.substr 0, 7
+      map.setView field.code
+    else
+      map.setView field.code + "_r"

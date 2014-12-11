@@ -1,7 +1,5 @@
 class ig.Map
   (@baseElement, @data) ->
-    @dataArray = for binId, datum of @data
-      datum
     @createMap!
 
   setView: (field) ->
@@ -31,7 +29,9 @@ class ig.Map
     if "dojezdy" is field.substr 0, 7
       @scale = d3.scale.quantize!
       @scale.range ['rgb(255,245,240)','rgb(254,224,210)','rgb(252,187,161)','rgb(252,146,114)','rgb(251,106,74)','rgb(239,59,44)','rgb(203,24,29)','rgb(165,15,21)','rgb(103,0,13)']
-      @scale.domain d3.extent @dataArray.map -> it[field]
+      values = for id, datum of @data
+        datum[field]
+      @scale.domain d3.extent values
     else
       colors = ['rgb(215,48,39)','rgb(244,109,67)','rgb(253,174,97)','rgb(254,224,144)','rgb(224,243,248)','rgb(171,217,233)','rgb(116,173,209)','rgb(69,117,180)']
       colors.reverse!
