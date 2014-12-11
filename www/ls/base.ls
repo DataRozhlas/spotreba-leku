@@ -62,15 +62,23 @@ getStyle = (feature, data, scale, field) ->
     value = bin[field]
     if value
       color = scale value
+      value += data[id + 1]?[field] || value
+      value += data[id - 1]?[field] || value
+      value += data[id + 35]?[field] || value
+      value += data[id - 36]?[field] || value
+      value += data[id + 36]?[field] || value
+      value += data[id - 37]?[field] || value
+      value /= 7
+      colorMini = scale value
     fillOpacity = 0.7
     fill = yes
   if !color
-    color = colors.1
+    color = colors.0
     fillOpacity = 0
     fill = no
   weight = 1
   opacity = 1
-  {color, weight, fillOpacity, fill, opacity}
+  {color, colorMini, weight, fillOpacity, fill, opacity}
 
 binData = {}
 for line, lineIndex in ig.data.binData.split "\n"

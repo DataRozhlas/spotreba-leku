@@ -41,7 +41,7 @@ class ig.InfoBar
         ctx = @getContext \2d
         for feature in projectedFeatures
           id = feature.id
-          ctx.fillStyle = feature.styles[field].color
+          ctx.fillStyle = feature.styles[field].colorMini
           ctx.beginPath!
           for point, index in feature.projectedPoints
             if index == 0

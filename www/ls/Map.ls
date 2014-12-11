@@ -11,7 +11,12 @@ class ig.Map
       @createGrid!
 
   createGrid: ->
-    @grid = L.geoJson @geoJson, style: @currentStyle
+    @grid = L.geoJson do
+      * @geoJson
+      * style: @currentStyle
+        onEachFeature: (feature, layer) ->
+          layer.on \mouseover ~>
+            console.log feature.properties.id
     @map.addLayer @grid
 
   createMap: ->
