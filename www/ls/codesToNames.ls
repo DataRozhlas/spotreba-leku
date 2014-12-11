@@ -6,77 +6,77 @@ ig.fieldCodesToNames =
     code: "dojezdy_very_urgent"
     name: "Dojezdy k urgentním případům"
   "DUŠNOST"             :
-    code: "DUŠNOST"
+    code: "DUŠNOST_r"
     name: "Dušnost"
   "ÚRAZ"                :
-    code: "ÚRAZ"
+    code: "ÚRAZ_r"
     name: "Úraz"
   "BOLEST BŘICHA"       :
-    code: "BOLEST BŘICHA"
+    code: "BOLEST BŘICHA_r"
     name: "Bolest břicha"
   "PÁD"                 :
-    code: "PÁD"
+    code: "PÁD_r"
     name: "Pád"
   "NESP.NEURO. PŘÍZ."   :
-    code: "NESP.NEURO. PŘÍZ."
+    code: "NESP.NEURO. PŘÍZ._r"
     name: "Neurologické příznaky"
   "JINÉ POT.AK."        :
-    code: "JINÉ POT.AK."
+    code: "JINÉ POT.AK._r"
     name: "Jiné akutní potíže"
   "STENOKARDIE"         :
-    code: "STENOKARDIE"
+    code: "STENOKARDIE_r"
     name: "Stenokardie"
   "JINÉ POT./ZH.STAVU"  :
-    code: "JINÉ POT./ZH.STAVU"
+    code: "JINÉ POT./ZH.STAVU_r"
     name: "Jiné potíže, zhoršení stavu"
   "PO KOLAPSU"          :
-    code: "PO KOLAPSU"
+    code: "PO KOLAPSU_r"
     name: "Po kolapsu"
   "BEZVĚDOMÍ"           :
-    code: "BEZVĚDOMÍ"
+    code: "BEZVĚDOMÍ_r"
     name: "Bezvědomí"
   "NEVOLNOST"           :
-    code: "NEVOLNOST"
+    code: "NEVOLNOST_r"
     name: "Nevolnost"
   "BOLEST ZAD "         :
-    code: "BOLEST ZAD "
+    code: "BOLEST ZAD _r"
     name: "Bolest zad "
   "PSYCHÓZA"            :
-    code: "PSYCHÓZA"
+    code: "PSYCHÓZA_r"
     name: "Psychóza"
   "NAPADENÍ"            :
-    code: "NAPADENÍ"
+    code: "NAPADENÍ_r"
     name: "Napadení"
   "INTOXIKACE"          :
-    code: "INTOXIKACE"
+    code: "INTOXIKACE_r"
     name: "Intoxikace"
   "SOMNOLENCE"          :
-    code: "SOMNOLENCE"
+    code: "SOMNOLENCE_r"
     name: "Somnolence"
   "KRVÁCENÍ"            :
-    code: "KRVÁCENÍ"
+    code: "KRVÁCENÍ_r"
     name: "Krvácení"
   "DN"                  :
-    code: "DN"
+    code: "DN_r"
     name: "Dopravní nehody"
   "HYPERT."             :
-    code: "HYPERT."
+    code: "HYPERT._r"
     name: "Hypert."
   "ARYTMIE"             :
-    code: "ARYTMIE"
+    code: "ARYTMIE_r"
     name: "Arytmie"
   "BOLEST DK"           :
-    code: "BOLEST DK"
+    code: "BOLEST DK_r"
     name: "Bolest dolních končetin"
   "TEPLOTA"             :
-    code: "TEPLOTA"
+    code: "TEPLOTA_r"
     name: "Teplota"
   "KŘEČE/PO KŘEČI"      :
-    code: "KŘEČE/PO KŘEČI"
+    code: "KŘEČE/PO KŘEČI_r"
     name: "Křeče"
   "K PORODU"            :
-    code: "K PORODU"
+    code: "K PORODU_r"
     name: "K porodu"
   "BOLEST JINÁ"         :
-    code: "BOLEST JINÁ"
+    code: "BOLEST JINÁ_r"
     name: "Bolest jiná"

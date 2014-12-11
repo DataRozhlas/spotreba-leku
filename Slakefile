@@ -17,7 +17,7 @@ externalData =
   "binData": "#__dirname/data/binned.tsv"
 
 preferScripts = <[ postInit.js _loadData.js ../data.js init.js _loadExternal.js]>
-deferScripts = <[ kandidatka.js base.js ]>
+deferScripts = <[ geoUtils.js kandidatka.js base.js ]>
 develOnlyScripts = <[ _loadData.js _loadExternal.js]>
 gzippable = <[ www/index.html www/script.js ]>
 build-styles = (options = {}, cb) ->
