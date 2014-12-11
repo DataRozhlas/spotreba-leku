@@ -16,7 +16,7 @@ class ig.Map
         fillOpacity = 0.7
       else
         color = '#d0d1e6'
-        fillOpacity = 0.3
+        fillOpacity = 0.6
       weight = 1
       {color, weight, fillOpacity}
     if @grid
@@ -40,7 +40,6 @@ class ig.Map
 
   createGrid: ->
     @geoJson = topojson.feature ig.data.grid, ig.data.grid.objects."data"
-    @geoJson.features .= filter ({properties}) ~> @data[properties.id] != void
     @grid = L.geoJson @geoJson, style: @currentStyle
     @map.addLayer @grid
 
