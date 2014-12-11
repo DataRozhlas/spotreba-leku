@@ -1,0 +1,50 @@
+#infoBar
+  position absolute
+  right 0px
+  top 0px
+  bottom 0px
+  width 330px
+  overflow auto
+  padding 10px 10px
+  .items
+    position relative
+    width 100%
+    .item
+      position absolute
+      left 0px
+      height 50px
+      padding 10px
+      outline 3px solid rgba(ColorHeadingLink, 0.1)
+      width 100%
+      overflow hidden
+      h2
+        position absolute
+        top 0px
+        left 60px
+        font-size 1em
+        margin 0px
+        line-height @height
+        font-weight normal
+      &:hover
+        outline 3px solid rgba(ColorHeadingLink, 0.3)
+        cursor pointer
+        background lighten(ColorHeadingLink, 98%)
+      &:active
+        outline 3px solid rgba(ColorHeadingLink, 0.9)
+        background lighten(ColorHeadingLink, 96%)
+      &.active
+        background lighten(ColorHeadingLink, 98%)
+        outline 3px solid rgba(ColorHeadingLink, 0.8)
+        h2:before
+          content " "
+          position absolute
+          top 0px
+          left -60px
+          margin-left -17px
+          margin-top -17px
+          width 30px
+          height 30px
+          background rgba(ColorHeadingLink, 0.8)
+          transform rotate(45deg)
+
+

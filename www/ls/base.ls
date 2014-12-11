@@ -40,6 +40,8 @@ for line, lineIndex in ig.data.binData.split "\n"
     item[field] = parseFloat cells[fieldIndex]
     if fieldIndex > 6
       item[field + "_r"] = item[field] / item["count_all"]
-
+container = d3.select ig.containers.base
 map = new ig.Map ig.containers.base, binData
-  ..setView fields.1
+  # ..setView fields.1
+
+infoBar = new ig.InfoBar container, fields

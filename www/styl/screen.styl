@@ -2,12 +2,15 @@
 @import prefixes
 @import 'components/triangle'
 
+infoBarWidth = 330px
 .ig
   @import basics
+  @import infoBar
 .ig
   #map
     position absolute
     top 0px
     left 0px
     bottom 0px
-    width 100%
+    width (1000px - infoBarWidth)
+    width calc(100% - 330px)
