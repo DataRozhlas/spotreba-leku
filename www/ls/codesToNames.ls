@@ -12,25 +12,25 @@ ig.fieldCodesToNames =
     code: "ÚRAZ"
     name: "Úraz"
   "BOLEST BŘICHA"       :
-    code: "BOLEST"
+    code: "BOLEST BŘICHA"
     name: "Bolest břicha"
   "PÁD"                 :
     code: "PÁD"
     name: "Pád"
   "NESP.NEURO. PŘÍZ."   :
-    code: "NESP"
+    code: "NESP.NEURO. PŘÍZ."
     name: "Neurologické příznaky"
   "JINÉ POT.AK."        :
-    code: "JINÉ"
+    code: "JINÉ POT.AK."
     name: "Jiné akutní potíže"
   "STENOKARDIE"         :
     code: "STENOKARDIE"
     name: "Stenokardie"
   "JINÉ POT./ZH.STAVU"  :
-    code: "JINÉ"
+    code: "JINÉ POT./ZH.STAVU"
     name: "Jiné potíže, zhoršení stavu"
   "PO KOLAPSU"          :
-    code: "PO"
+    code: "PO KOLAPSU"
     name: "Po kolapsu"
   "BEZVĚDOMÍ"           :
     code: "BEZVĚDOMÍ"
@@ -39,7 +39,7 @@ ig.fieldCodesToNames =
     code: "NEVOLNOST"
     name: "Nevolnost"
   "BOLEST ZAD "         :
-    code: "BOLEST"
+    code: "BOLEST ZAD "
     name: "Bolest zad "
   "PSYCHÓZA"            :
     code: "PSYCHÓZA"
@@ -60,23 +60,23 @@ ig.fieldCodesToNames =
     code: "DN"
     name: "Dopravní nehody"
   "HYPERT."             :
-    code: "HYPERT"
+    code: "HYPERT."
     name: "Hypert."
   "ARYTMIE"             :
     code: "ARYTMIE"
     name: "Arytmie"
   "BOLEST DK"           :
-    code: "BOLEST"
+    code: "BOLEST DK"
     name: "Bolest dolních končetin"
   "TEPLOTA"             :
     code: "TEPLOTA"
     name: "Teplota"
   "KŘEČE/PO KŘEČI"      :
-    code: "KŘEČE"
+    code: "KŘEČE/PO KŘEČI"
     name: "Křeče"
   "K PORODU"            :
-    code: "K"
+    code: "K PORODU"
     name: "K porodu"
   "BOLEST JINÁ"         :
-    code: "BOLEST"
+    code: "BOLEST JINÁ"
     name: "Bolest jiná"
