@@ -34,14 +34,6 @@ getStyle = (feature, data, scale, field) ->
     value = bin[field]
     if value
       color = scale value
-      value += data[id + 1]?[field] || value
-      value += data[id - 1]?[field] || value
-      value += data[id + 35]?[field] || value
-      value += data[id - 36]?[field] || value
-      value += data[id + 36]?[field] || value
-      value += data[id - 37]?[field] || value
-      value /= 7
-      colorMini = scale value
     fillOpacity = 0.7
     fill = yes
   if !color
@@ -50,7 +42,7 @@ getStyle = (feature, data, scale, field) ->
     fill = no
   weight = 1
   opacity = 1
-  {color, colorMini, weight, fillOpacity, fill, opacity}
+  {color, weight, fillOpacity, fill, opacity}
 
 ig.getGeoJson = (infobarFields, binData) ->
   geoJson = topojson.feature ig.data.grid, ig.data.grid.objects."data"

@@ -57,7 +57,7 @@ infobarFields = (fields[1, 3] ++ fields.slice 7).map (code) ->
 geoJson = ig.getGeoJson infobarFields, binData
 
 map = new ig.Map ig.containers.base, geoJson, binData
-  # ..setView fields.1
+  ..setView fields.1
 
 infoBar = new ig.InfoBar container, geoJson, infobarFields
   ..on \clicked (field) ~>
