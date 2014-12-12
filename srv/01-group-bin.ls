@@ -38,10 +38,13 @@ for line, index in lines
     zsj_assoc[binId] = {binId, dojezdy_all: [], dojezdy_urgent:[], dojezdy_very_urgent: [], count_all: 0, count_urgent: 0, count_very_urgent: 0}
     for sum in sums
       zsj_assoc[binId][sum] = 0
+    for sum in sums
+      zsj_assoc[binId][sum + "_time"] = []
   zsj = zsj_assoc[binId]
+  dojezd = parseFloat dojezd
   if zsj[duvod] != void
     zsj[duvod]++
-  dojezd = parseFloat dojezd
+    zsj[duvod + "_time"].push dojezd
   zsj.dojezdy_all.push dojezd
   zsj.count_all++
   if not duvod_full.match /-$/
@@ -55,19 +58,18 @@ out_rows = for zsj, data of zsj_assoc
   items = for item, value of data
     if 'Array' is typeof! value
       if value.length
-        sum = 0
-        for val in value
-          sum += val
-        avg = sum / value.length
-        if avg.toString!split "." ?1.length > 2
-          avg.toFixed 2
+        value.sort (a, b) -> a - b
+        median = value[Math.floor value.length / 2]
+        if median.toString!split "." ?1.length > 2
+          median.toFixed 2
         else
-          avg
+          median
       else
         0
     else
       value
   items.join "\t"
+
 header = for key of zsj_assoc['1893']
   key
 out_rows.unshift header.join "\t"

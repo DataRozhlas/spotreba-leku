@@ -39,19 +39,27 @@ for line, lineIndex in ig.data.binData.split "\n"
   cells = line.split "\t"
   item = binData[cells.0] = {}
   for field, fieldIndex in fields
-    item[field] = parseInt cells[fieldIndex], 10
+    item[field] = parseFloat cells[fieldIndex], 10
     if fieldIndex > 6
       ig.fieldCodesToNames[field].sum += item[field]
+      time = parseFloat cells[fieldIndex + 25]
+      if time
+        ig.fieldCodesToNames[field].timeSum += time
+        ig.fieldCodesToNames[field].recordCount++
       item[field + "_r"] = item[field] / item["count_all"]
     else
       continue unless ig.fieldCodesToNames[field]
       count = parseInt cells[fieldIndex + 3], 10
       ig.fieldCodesToNames[field].sum += count
+      if item[field]
+        ig.fieldCodesToNames[field].timeSum += item[field]
+        ig.fieldCodesToNames[field].recordCount++
 container = d3.select ig.containers.base
+for field, data of ig.fieldCodesToNames
+  data.avgTime = data.timeSum / data.recordCount
 
 infobarFields = (fields[1, 3] ++ fields.slice 7).map (code) ->
   ig.fieldCodesToNames[code]
-
 
 
 geoJson = ig.getGeoJson infobarFields, binData

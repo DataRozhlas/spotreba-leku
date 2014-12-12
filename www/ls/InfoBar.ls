@@ -29,6 +29,16 @@ class ig.InfoBar
                 | perc >= 10 => 1
                 | otherwise => 2
               "#{ig.utils.formatNumber perc, decimals} %"
+        ..append \div
+          ..attr \class \stat
+          ..append \h3 .html "Prům. dojezd"
+          ..append \span
+            ..html ~>
+              minutes = Math.floor(it.avgTime).toString!
+              seconds = Math.round(it.avgTime % 1 * 60).toString!
+              if minutes.length == 1 then minutes = "0#minutes"
+              if seconds.length == 1 then seconds = "0#seconds"
+              "#minutes:#seconds"
 
       ..on \mousedown -> d3.event.preventDefault!
       ..on \click ->
