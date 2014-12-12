@@ -5,7 +5,7 @@ class ig.InfoBar
       ..attr \id \infoBar
     itemsContainer = @element.append \div
       ..attr \class \items
-    itemHeight = 60
+    itemHeight = 90
     self = @
     @items = itemsContainer.selectAll \.item .data @fields .enter!append \div
       ..attr \class "item"
@@ -16,7 +16,7 @@ class ig.InfoBar
         self.items.classed \active no
         @className += " active"
         self.emit \clicked it
-    @drawMinimaps!
+    # @drawMinimaps!
     @items
       .filter (d, i) -> i is 0
       .classed \active yes
