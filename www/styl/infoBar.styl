@@ -14,26 +14,54 @@
     .item
       position absolute
       left 0px
-      height 80px
+      height 94px
       padding 10px
       outline 3px solid rgba(ColorHeadingLink, 0.1)
       width 100%
       overflow hidden
-      background rgba(255,255,255,0.96)
+      background white
+      color #3
       h2
         position absolute
         top 0px
-        left 70px
-        font-size 1em
+        left 17px
         margin 0px
-        line-height 45px
-        font-weight normal
+        line-height 40px
+        font-family 'Roboto'
+        font-variant small-caps
+        font-weight 700
+        font-size 1.2em
+      .stats
+        position absolute
+        left 17px
+        top 40px
+        .stat
+          float left
+          &:first-child
+            width 90px
+            border-right 1px solid rgba(ColorHeadingLink, 0.2)
+            margin-right 25px
+        h3
+          display block
+          margin 0px
+          font-size 0.8em
+          font-family 'Roboto'
+          font-weight 400
+          text-transform uppercase
+        span
+          display block
+          float left
+          clear left
+          margin-top 3px
+          font-family 'Roboto'
+          font-size 1.3em
+          font-weight 700
+
       canvas
         position absolute
-        top 0px
-        left 0px
+        top 10px
+        right 10px
         z-index 2
-        opacity 0.9
       &:hover
         outline 3px solid rgba(ColorHeadingLink, 0.3)
         cursor pointer
@@ -48,12 +76,12 @@
           content " "
           position absolute
           top 0px
-          left -70px
+          left -17px
           margin-left -17px
           margin-top -17px
           width 30px
           height 30px
-          background white
+          background rgba(ColorHeadingLink, 0.8)
           transform rotate(45deg)
           z-index 3
 

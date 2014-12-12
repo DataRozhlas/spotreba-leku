@@ -39,9 +39,14 @@ for line, lineIndex in ig.data.binData.split "\n"
   cells = line.split "\t"
   item = binData[cells.0] = {}
   for field, fieldIndex in fields
-    item[field] = parseFloat cells[fieldIndex]
+    item[field] = parseInt cells[fieldIndex], 10
     if fieldIndex > 6
+      ig.fieldCodesToNames[field].sum += item[field]
       item[field + "_r"] = item[field] / item["count_all"]
+    else
+      continue unless ig.fieldCodesToNames[field]
+      count = parseInt cells[fieldIndex + 3], 10
+      ig.fieldCodesToNames[field].sum += count
 container = d3.select ig.containers.base
 
 infobarFields = (fields[1, 3] ++ fields.slice 7).map (code) ->
