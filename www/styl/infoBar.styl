@@ -8,6 +8,26 @@
   padding 10px 10px 10px 14px
   background white
   background linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.9) 7px,rgba(255,255,255,0.9) 100%); /* W3C */
+  h2
+    display none
+    position absolute
+    top 10px
+    left 10px
+    margin 0px
+    font-size 1.5em
+    z-index 4
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+    width 300px
+    font-family 'Roboto'
+    font-weight 400
+    b
+      font-weight 700
+  &.detail
+    h2
+      display block
+
   .items
     position relative
     width 100%
@@ -22,7 +42,7 @@
       overflow hidden
       background white
       color #3
-      h2
+      h3
         position absolute
         top 0px
         left 20px
@@ -47,7 +67,7 @@
             border-right 1px solid rgba(ColorHeadingLink, 0.2)
             margin-right 18px
 
-        h3
+        h4
           display block
           margin 0px
           font-size 0.8em
@@ -78,7 +98,7 @@
       &.active
         background lighten(ColorHeadingLink, 98%)
         outline 3px solid rgba(ColorHeadingLink, 0.8)
-        h2:before
+        h3:before
           content " "
           position absolute
           top 0px

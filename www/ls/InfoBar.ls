@@ -4,27 +4,29 @@ class ig.InfoBar
     ig.Events @
     @element = @baseElement.append \div
       ..attr \id \infoBar
+    @header = @element.append \h2
+      ..html ""
     itemsContainer = @element.append \div
       ..attr \class \items
       ..style \height "#{@fields.length * @itemHeight}px"
     self = @
     @items = itemsContainer.selectAll \.item .data @fields .enter!append \div
       ..attr \class "item"
-      ..append \h2 .html (.name)
+      ..append \h3 .html (.name)
       ..append \div
         ..attr \class \stats
         ..append \div
           ..attr \class "stat count"
-          ..append \h3 .html "Případů"
+          ..append \h4 .html "Případů"
           ..append \span
 
         ..append \div
           ..attr \class "stat share"
-          ..append \h3 .html "Podíl"
+          ..append \h4 .html "Podíl"
           ..append \span
         ..append \div
           ..attr \class "stat time"
-          ..append \h3 .html "Prům. dojezd"
+          ..append \h4 .html "Prům. dojezd"
           ..append \span
 
       ..on \mousedown -> d3.event.preventDefault!
@@ -46,6 +48,8 @@ class ig.InfoBar
     @drawGeneral!
 
   drawGeneral: ->
+    @element.classed \detail no
+
     @items.style \top ~> "#{it.defaultIndex * @itemHeight}px"
     @itmCount.html -> ig.utils.formatNumber it.sum
     @itmShare.html ~>
@@ -55,13 +59,15 @@ class ig.InfoBar
       toTime it.avgTime
 
   drawCell: (feature) ->
+    @element.classed \detail yes
+    @header.html "Oblast <b>#{feature.properties.NAZ_ZSJ}</b>"
     @fields.sort (a, b) ->
       (feature.data?[b.codeToField] || 0) - (feature.data?[a.codeToField] || 0)
     index = 2
     for field in @fields
        if !field.isDojezd
         field.index = index++
-    @items.style \top ~> "#{it.index * @itemHeight}px"
+    @items.style \top ~> "#{30 + it.index * @itemHeight}px"
     @itmCount.html ~>
       return "&ndash;" if not feature.data
       ig.utils.formatNumber feature.data[it.codeToField]
