@@ -41,7 +41,7 @@ for line, index in lines
     for sum in sums
       zsj_assoc[binId][sum + "_time"] = []
   zsj = zsj_assoc[binId]
-  dojezd = parseFloat dojezd
+  dojezd = parseFloat (dojezd || "").replace "," "."
   if zsj[duvod] != void
     zsj[duvod]++
     zsj[duvod + "_time"].push dojezd
@@ -60,10 +60,11 @@ out_rows = for zsj, data of zsj_assoc
       if value.length
         value.sort (a, b) -> a - b
         median = value[Math.floor value.length / 2]
-        if median.toString!split "." ?1.length > 2
-          median.toFixed 2
-        else
-          median
+        median
+        # if median.toString!split "." ?1.length > 2
+        #   median.toFixed 2
+        # else
+        #   median
       else
         0
     else
