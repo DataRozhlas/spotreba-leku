@@ -84,12 +84,12 @@ class ig.InfoBar
 
     index = 2
     selectedIndex = null
+    for field in @fields
+      if !field.isDojezd
+        field.index = index++
+      if field.defaultIndex is @selectedFieldIndex
+        selectedIndex = field.index
     if @selectedFieldIndex >= 2
-      for field in @fields
-        if !field.isDojezd
-          field.index = index++
-        if field.defaultIndex is @selectedFieldIndex
-          selectedIndex = field.index
       futureTop = paddingTop + selectedIndex * @itemHeight
       scroll = @element.node!scrollTop
       futureOffset = futureTop - scroll
