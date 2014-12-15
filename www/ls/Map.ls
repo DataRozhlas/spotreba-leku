@@ -29,7 +29,7 @@ class ig.Map
     @baseElement.appendChild @mapElement
     maxBounds = [[49.94,14.24], [50.18,14.94]]
     center = [50.0845, 14.496]
-    zoom = 12
+    zoom = 11
     @map = L.map do
       * @mapElement
       * minZoom: 11,
