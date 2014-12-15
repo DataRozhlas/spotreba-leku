@@ -84,3 +84,4 @@ map
 
 new ig.EmbedLogo ig.containers.base, {dark: yes}
 legend = new ig.Legend container, geoJson.features
+new ig.ShareDialog ig.containers.base
