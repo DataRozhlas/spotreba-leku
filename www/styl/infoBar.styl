@@ -37,10 +37,11 @@
       left 0px
       height 94px
       padding 10px
-      outline 3px solid rgba(ColorHeadingLink, 0.1)
       width 100%
       overflow hidden
       background white
+      outline 3px solid rgba(ColorHeadingLink, 0.2)
+      background lighten(ColorHeadingLink, 98%)
       color #3
       h3
         position absolute
@@ -89,15 +90,15 @@
         right 10px
         z-index 2
       &:hover
-        outline 3px solid rgba(ColorHeadingLink, 0.3)
+        outline 3px solid rgba(ColorHeadingLink, 0.5)
         cursor pointer
-        background lighten(ColorHeadingLink, 98%)
+        background lighten(ColorHeadingLink, 95%)
       &:active
         outline 3px solid rgba(ColorHeadingLink, 0.9)
-        background lighten(ColorHeadingLink, 96%)
+        background lighten(ColorHeadingLink, 92%)
       &.active
-        background lighten(ColorHeadingLink, 98%)
-        outline 3px solid rgba(ColorHeadingLink, 0.8)
+        background lighten(ColorHeadingLink, 94%)
+        outline 3px solid rgba(ColorHeadingLink, 0.9)
         z-index 3
         h3:before
           content " "
@@ -113,8 +114,10 @@
           z-index 3
       &:first-child
       &:nth-child(2)
+        outline 3px solid rgba(ColorHeading, 0.15)
+        background lighten(ColorHeading, 99%)
         &:hover
-          outline 3px solid rgba(ColorHeading, 0.3)
+          outline 3px solid rgba(ColorHeading, 0.4)
           cursor pointer
           background lighten(ColorHeading, 98%)
         &:active
