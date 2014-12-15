@@ -32,7 +32,6 @@ fields =
   "K PORODU"
   "BOLEST JINÁ"
 
-
 binData = {}
 for line, lineIndex in ig.data.binData.split "\n"
   continue unless lineIndex
@@ -62,14 +61,17 @@ for field, data of ig.fieldCodesToNames
 infobarFields = (fields[1, 3] ++ fields.slice 7).map (code) ->
   ig.fieldCodesToNames[code]
 
+fieldToDisplay = (parseInt (window.location.hash.substr 1), 10) || 0
+infobarFields[fieldToDisplay].initiallyDisplayed = yes
 
 geoJson = ig.getGeoJson infobarFields, binData
 
 map = new ig.Map ig.containers.base, geoJson, binData
-  ..setView fields.1
+  ..setView infobarFields[fieldToDisplay].code
 
 infoBar = new ig.InfoBar container, geoJson, infobarFields
   ..on \clicked (field) ~>
+    window.location.hash = infobarFields.indexOf field
     if "dojezdy" == field.code.substr 0, 7
       map.setView field.code
       legend.setCount no

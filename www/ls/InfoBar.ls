@@ -42,9 +42,15 @@ class ig.InfoBar
         @className += " active"
         self.emit \clicked it
         self.selectedFieldIndex = it.defaultIndex
-    @selectedFieldIndex = 0
+    @selectedFieldIndex = null
     @items
-      .filter (d, i) ~> i is @selectedFieldIndex
+      .filter ~>
+        if it.initiallyDisplayed
+          @selectedFieldIndex = it.defaultIndex
+          yes
+        else
+          no
+
       .classed \active yes
     for field, index in @fields
       field.index = field.defaultIndex = index
