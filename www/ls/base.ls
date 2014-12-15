@@ -77,3 +77,5 @@ infoBar = new ig.InfoBar container, geoJson, infobarFields
 map
   ..on \mouseover (feature) ~> infoBar.drawCell feature
   ..on \mouseout ~> infoBar.drawGeneral!
+
+new ig.EmbedLogo ig.containers.base, {dark: yes}
