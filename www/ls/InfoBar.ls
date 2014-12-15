@@ -4,6 +4,8 @@ class ig.InfoBar
     ig.Events @
     @element = @baseElement.append \div
       ..attr \id \infoBar
+    @height = @element.node!offsetHeight
+    @optimalOffset = Math.round @height / 2 - @itemHeight / 2
     @header = @element.append \h2
       ..html ""
     itemsContainer = @element.append \div
@@ -34,8 +36,10 @@ class ig.InfoBar
         self.items.classed \active no
         @className += " active"
         self.emit \clicked it
+        self.selectedFieldIndex = it.defaultIndex
+    @selectedFieldIndex = 0
     @items
-      .filter (d, i) -> i is 0
+      .filter (d, i) ~> i is @selectedFieldIndex
       .classed \active yes
     for field, index in @fields
       field.index = field.defaultIndex = index
@@ -59,15 +63,32 @@ class ig.InfoBar
       toTime it.avgTime
 
   drawCell: (feature) ->
+    paddingTop = 30
     @element.classed \detail yes
     @header.html "Oblast <b>#{feature.properties.NAZ_ZSJ}</b>"
     @fields.sort (a, b) ->
-      (feature.data?[b.codeToField] || 0) - (feature.data?[a.codeToField] || 0)
+      d = (feature.data?[b.codeToField] || 0) - (feature.data?[a.codeToField] || 0)
+      return d if d
+      if b.codeToField > a.codeToField
+        return 1
+      else
+        return -1
+
     index = 2
-    for field in @fields
-       if !field.isDojezd
-        field.index = index++
-    @items.style \top ~> "#{30 + it.index * @itemHeight}px"
+    selectedIndex = null
+    if @selectedFieldIndex >= 2
+      for field in @fields
+        if !field.isDojezd
+          field.index = index++
+        if field.defaultIndex is @selectedFieldIndex
+          selectedIndex = field.index
+      futureTop = paddingTop + selectedIndex * @itemHeight
+      scroll = @element.node!scrollTop
+      futureOffset = futureTop - scroll
+      centering = @optimalOffset - futureOffset
+    else
+      centering = 0
+    @items.style \top ~> "#{paddingTop + centering + it.index * @itemHeight}px"
     @itmCount.html ~>
       return "&ndash;" if not feature.data
       ig.utils.formatNumber feature.data[it.codeToField]
