@@ -14,7 +14,12 @@ class ig.InfoBar
     self = @
     @items = itemsContainer.selectAll \.item .data @fields .enter!append \div
       ..attr \class "item"
-      ..append \h3 .html (.name)
+      ..append \h3
+        ..append \span
+          ..attr \class \order
+        ..append \span
+          ..attr \class \content
+          ..html (.name)
       ..append \div
         ..attr \class \stats
         ..append \div
@@ -49,11 +54,13 @@ class ig.InfoBar
     @itmCount = @items.selectAll ".stats .stat.count span"
     @itmShare = @items.selectAll ".stats .stat.share span"
     @itmTime = @items.selectAll ".stats .stat.time span"
+    @itmOrder = @items
+      .filter (d, i) -> i >= 2
+      .selectAll "span.order"
     @drawGeneral!
 
   drawGeneral: ->
     @element.classed \detail no
-
     @items.style \top ~> "#{it.defaultIndex * @itemHeight}px"
     @itmCount.html -> ig.utils.formatNumber it.sum
     @itmShare.html ~>
@@ -61,6 +68,7 @@ class ig.InfoBar
 
     @itmTime.html ~>
       toTime it.avgTime
+    @itmOrder.html -> "#{it.defaultIndex - 1}. "
 
   drawCell: (feature) ->
     paddingTop = 30
@@ -101,6 +109,7 @@ class ig.InfoBar
         | !it.isDojezd => it.codeToField + "_time"
         | otherwise => it.code
       toTime feature.data[fieldId]
+    @itmOrder.html -> "#{it.index - 1}. "
 
 toPercent = (perc) ->
   perc *= 100
