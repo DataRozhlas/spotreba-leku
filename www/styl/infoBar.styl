@@ -111,5 +111,17 @@
           background rgba(ColorHeadingLink, 0.8)
           transform rotate(45deg)
           z-index 3
-
-
+      &:first-child
+      &:nth-child(2)
+        &:hover
+          outline 3px solid rgba(ColorHeading, 0.3)
+          cursor pointer
+          background lighten(ColorHeading, 98%)
+        &:active
+          outline 3px solid rgba(ColorHeading, 0.9)
+          background lighten(ColorHeading, 96%)
+        &.active
+          background lighten(ColorHeading, 98%)
+          outline 3px solid rgba(ColorHeading, 0.8)
+          h3:before
+            background rgba(ColorHeading, 0.8)
