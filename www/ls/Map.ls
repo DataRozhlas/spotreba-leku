@@ -17,6 +17,7 @@ class ig.Map
       * style: @currentStyle
         onEachFeature: (feature, layer) ~>
           layer.on \mouseover ~>
+            console.log feature.properties.id
             @emit \mouseover feature
           layer.on \mouseout ~>
             @emit \mouseout

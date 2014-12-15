@@ -72,10 +72,13 @@ infoBar = new ig.InfoBar container, geoJson, infobarFields
   ..on \clicked (field) ~>
     if "dojezdy" == field.code.substr 0, 7
       map.setView field.code
+      legend.setCount no
     else
       map.setView field.code
+      legend.setCount yes
 map
   ..on \mouseover (feature) ~> infoBar.drawCell feature
   ..on \mouseout ~> infoBar.drawGeneral!
 
 new ig.EmbedLogo ig.containers.base, {dark: yes}
+legend = new ig.Legend container, geoJson.features

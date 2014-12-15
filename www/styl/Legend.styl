@@ -1,0 +1,40 @@
+.legend
+  box-sizing content-box
+  position absolute
+  left 56px
+  top 10px
+  background white
+  width 239px
+  height 60px
+  border 2px solid rgba(0,0,0,0.2)
+  border-radius 2px
+  overflow hidden
+  .line
+    position absolute
+    top 0px
+    left 0px
+    transition top 0.8s
+    &:last-child
+      top 50px
+    div
+    svg
+      float left
+    svg
+      margin-top 9px
+    div
+      margin-top 7px
+      width 79px
+      text-align center
+      font-family 'Roboto'
+      text-transform lowercase
+      font-variant small-caps
+    &:first-child
+      div
+        margin-top 17px
+  &.count
+    .line
+      top -50px
+      &:last-child
+        top 0px
+
+
