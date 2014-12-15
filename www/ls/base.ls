@@ -43,6 +43,7 @@ for line, lineIndex in ig.data.binData.split "\n"
     if fieldIndex > 6
       ig.fieldCodesToNames[field].sum += item[field]
       time = parseFloat cells[fieldIndex + 25]
+      item[field + "_time"] = time
       if time
         ig.fieldCodesToNames[field].timeSum += time
         ig.fieldCodesToNames[field].recordCount++
@@ -73,3 +74,6 @@ infoBar = new ig.InfoBar container, geoJson, infobarFields
       map.setView field.code
     else
       map.setView field.code
+map
+  ..on \mouseover (feature) ~> infoBar.drawCell feature
+  ..on \mouseout ~> infoBar.drawGeneral!

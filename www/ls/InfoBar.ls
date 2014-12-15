@@ -14,31 +14,18 @@ class ig.InfoBar
       ..append \div
         ..attr \class \stats
         ..append \div
-          ..attr \class \stat
+          ..attr \class "stat count"
           ..append \h3 .html "Případů"
           ..append \span
-            .html -> ig.utils.formatNumber it.sum
+
         ..append \div
-          ..attr \class \stat
+          ..attr \class "stat share"
           ..append \h3 .html "Podíl"
           ..append \span
-            ..html ~>
-              perc = it.sum / @fields[0].sum * 100
-              decimals =
-                | perc == 100 => 0
-                | perc >= 10 => 1
-                | otherwise => 2
-              "#{ig.utils.formatNumber perc, decimals} %"
         ..append \div
-          ..attr \class \stat
+          ..attr \class "stat time"
           ..append \h3 .html "Prům. dojezd"
           ..append \span
-            ..html ~>
-              minutes = Math.floor(it.avgTime).toString!
-              seconds = Math.round(it.avgTime % 1 * 60).toString!
-              if minutes.length == 1 then minutes = "0#minutes"
-              if seconds.length == 1 then seconds = "0#seconds"
-              "#minutes:#seconds"
 
       ..on \mousedown -> d3.event.preventDefault!
       ..on \click ->
@@ -48,3 +35,45 @@ class ig.InfoBar
     @items
       .filter (d, i) -> i is 0
       .classed \active yes
+
+    @itmCount = @items.selectAll ".stats .stat.count span"
+    @itmShare = @items.selectAll ".stats .stat.share span"
+    @itmTime = @items.selectAll ".stats .stat.time span"
+    @drawGeneral!
+
+  drawGeneral: ->
+    @itmCount.html -> ig.utils.formatNumber it.sum
+    @itmShare.html ~>
+      toPercent it.sum / @fields[0].sum
+
+    @itmTime.html ~>
+      toTime it.avgTime
+
+  drawCell: (feature) ->
+    @itmCount.html ~>
+      return "&ndash;" if not feature.data
+      ig.utils.formatNumber feature.data[it.codeToField]
+    @itmShare.html ~>
+      return "&ndash;" if not feature.data
+      toPercent feature.data[it.codeToField] / feature.data['count_all']
+    @itmTime.html ~>
+      return "&ndash;" if not feature.data
+      fieldId =
+        | !it.isDojezd => it.codeToField + "_time"
+        | otherwise => it.code
+      toTime feature.data[fieldId]
+
+toPercent = (perc) ->
+  perc *= 100
+  decimals =
+    | perc == 100 => 0
+    | perc >= 10 => 1
+    | otherwise => 2
+  "#{ig.utils.formatNumber perc, decimals} %"
+
+toTime = (minutesFloat) ->
+  minutes = Math.floor(minutesFloat).toString!
+  seconds = Math.round(minutesFloat % 1 * 60).toString!
+  if minutes.length == 1 then minutes = "0#minutes"
+  if seconds.length == 1 then seconds = "0#seconds"
+  "#minutes:#seconds"

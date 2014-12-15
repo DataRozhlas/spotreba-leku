@@ -1,5 +1,6 @@
 class ig.Map
-  (@baseElement, @geoJson, @data) ->
+  (@baseElement, @geoJson) ->
+    ig.Events @
     @createMap!
 
   setView: (field) ->
@@ -14,9 +15,11 @@ class ig.Map
     @grid = L.geoJson do
       * @geoJson
       * style: @currentStyle
-        onEachFeature: (feature, layer) ->
+        onEachFeature: (feature, layer) ~>
           layer.on \mouseover ~>
-            console.log feature.properties.id
+            @emit \mouseover feature
+          layer.on \mouseout ~>
+            @emit \mouseout
     @map.addLayer @grid
 
   createMap: ->
