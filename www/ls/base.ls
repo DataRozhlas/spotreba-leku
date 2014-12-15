@@ -82,6 +82,10 @@ map
   ..on \mouseover (feature) ~> infoBar.drawCell feature
   ..on \mouseout ~> infoBar.drawGeneral!
 
+geocoder = new ig.Geocoder ig.containers.base
+  ..on \latLng (latlng) ->
+    map.map.setView latlng, 15
+
 new ig.EmbedLogo ig.containers.base, {dark: yes}
 legend = new ig.Legend container, geoJson.features
 new ig.ShareDialog ig.containers.base
