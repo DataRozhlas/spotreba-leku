@@ -79,7 +79,9 @@ infoBar = new ig.InfoBar container, geoJson, infobarFields
       map.setView field.code
       legend.setCount yes
 map
-  ..on \mouseover (feature) ~> infoBar.drawCell feature
+  ..on \mouseover (feature) ~>
+    return if feature.data is void
+    infoBar.drawCell feature
   ..on \mouseout ~> infoBar.drawGeneral!
 
 geocoder = new ig.Geocoder ig.containers.base
