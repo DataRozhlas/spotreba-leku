@@ -26,7 +26,7 @@ class ig.Map
     @mapElement =  document.createElement \div
       ..id = "map"
     @baseElement.appendChild @mapElement
-    maxBounds = [[49.94,14.24], [50.18,14.94]]
+    maxBounds = [[49.89,14.14], [50.23,15.04]]
     center = [50.0845, 14.496]
     zoom = 11
     @map = L.map do
