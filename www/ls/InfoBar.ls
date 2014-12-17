@@ -1,5 +1,6 @@
 class ig.InfoBar
   itemHeight: 104
+  locked: no
   (@baseElement, @geoJson, @fields) ->
     ig.Events @
     @element = @baseElement.append \div
@@ -8,6 +9,19 @@ class ig.InfoBar
     @optimalOffset = Math.round @height / 2 - @itemHeight / 2
     @header = @element.append \h2
       ..html ""
+    @unlockNotifiy = @element.append \span
+      ..attr \class \unlockNotify
+      ..append \span
+        ..attr \class \btn
+        ..html "×"
+      ..append \span
+        ..attr \class \content
+        ..html "Zpět na celkové statistiky"
+      ..on \click ~>
+        @locked = no
+        @element.classed \locked no
+        @emit \unlockRequested
+
     itemsContainer = @element.append \div
       ..attr \class \items
       ..style \height "#{@fields.length * @itemHeight}px"
@@ -66,6 +80,7 @@ class ig.InfoBar
     @drawGeneral!
 
   drawGeneral: ->
+    return if @locked
     @element.classed \detail no
     @items.style \top ~> "#{it.defaultIndex * @itemHeight}px"
     @itmCount.html -> ig.utils.formatNumber it.sum
@@ -76,8 +91,14 @@ class ig.InfoBar
       toTime it.avgTime
     @itmOrder.html -> "#{it.defaultIndex - 1}. "
 
-  drawCell: (feature) ->
+  drawCell: (feature, options = {}) ->
+    {lock} = options
+    return if @locked and lock is void
+    @locked = lock if lock isnt void
     paddingTop = 30
+    if @locked
+      paddingTop += 30
+    @element.classed \locked !!@locked
     @element.classed \detail yes
     @header.html "Oblast <b>#{feature.properties.NAZ_ZSJ}</b>"
     @fields.sort (a, b) ->

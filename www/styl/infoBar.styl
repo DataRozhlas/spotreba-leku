@@ -27,13 +27,35 @@
     background rgba(255,255,255,0.9)
     b
       font-weight 700
+  .unlockNotify
+    display none
+    position absolute
+    top 37px
+    left 10px
+    z-index 5
+    .btn
+      font-size 2em
+      text-decoration none
+      padding-right 10px
+      position relative
+      top 4px
+    .content
+      text-decoration underline
+    &:hover
+      .content
+        text-decoration none
+      cursor pointer
   &.detail
     h2
+      display block
+  &.locked
+    .unlockNotify
       display block
 
   .items
     position relative
     width 100%
+    z-index 4
     .item
       position absolute
       transition top 0.4s

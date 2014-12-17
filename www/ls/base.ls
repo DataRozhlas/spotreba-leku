@@ -69,6 +69,8 @@ geoJson = ig.getGeoJson infobarFields, binData
 map = new ig.Map ig.containers.base, geoJson, binData
   ..setView infobarFields[fieldToDisplay].code
 
+lockedFeature = null
+
 infoBar = new ig.InfoBar container, geoJson, infobarFields
   ..on \clicked (field) ~>
     window.location.hash = infobarFields.indexOf field
@@ -78,11 +80,26 @@ infoBar = new ig.InfoBar container, geoJson, infobarFields
     else
       map.setView field.code
       legend.setCount yes
+  ..on \unlockRequested ->
+    lockedFeature := null
+    map.setHighlight null
+    infoBar.drawGeneral!
+
 map
   ..on \mouseover (feature) ~>
     return if feature.data is void
     infoBar.drawCell feature
   ..on \mouseout ~> infoBar.drawGeneral!
+  ..on \click (feature) ~>
+    return if feature.data is void
+    if feature != lockedFeature
+      map.setHighlight feature
+      infoBar.drawCell feature, lock: yes
+      lockedFeature := feature
+    else
+      map.setHighlight null
+      infoBar.drawCell feature, lock: no
+      lockedFeature := null
 
 geocoder = new ig.Geocoder ig.containers.base
   ..on \latLng (latlng) ->

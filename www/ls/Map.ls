@@ -20,7 +20,15 @@ class ig.Map
             @emit \mouseover feature
           layer.on \mouseout ~>
             @emit \mouseout
+          layer.on \click ~>
+            @emit \click feature
     @map.addLayer @grid
+    @highlightPoly = L.polygon do
+      * []
+      * fill: no
+        color: \black
+        opacity: 1
+    @map.addLayer @highlightPoly
 
   createMap: ->
     @mapElement =  document.createElement \div
@@ -49,3 +57,11 @@ class ig.Map
         opacity: 0.75
     @map.addLayer baseLayer
     @map.addLayer labelLayer
+
+  setHighlight: (feature) ->
+    if feature
+      latLngs = feature.geometry.coordinates.0.map ([lng, lat]) ->
+        new L.LatLng lat, lng
+      @highlightPoly.setLatLngs latLngs
+    else
+      @highlightPoly.setLatLngs []
