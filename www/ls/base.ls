@@ -107,4 +107,6 @@ geocoder = new ig.Geocoder ig.containers.base
 
 new ig.EmbedLogo ig.containers.base, {dark: yes}
 legend = new ig.Legend container, geoJson.features
+if fieldToDisplay > 1
+  legend.setCount yes
 new ig.ShareDialog ig.containers.base
