@@ -83,6 +83,7 @@ class ig.InfoBar
     return if @locked
     @element.classed \detail no
     @items.style \top ~> "#{it.defaultIndex * @itemHeight}px"
+    @items.classed \hidden no
     @itmCount.html -> ig.utils.formatNumber it.sum
     @itmShare.html ~>
       toPercent it.sum / @fields[0].sum
