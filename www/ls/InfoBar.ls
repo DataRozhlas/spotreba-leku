@@ -22,11 +22,11 @@ class ig.InfoBar
         @element.classed \locked no
         @emit \unlockRequested
 
-    itemsContainer = @element.append \div
+    @itemsContainer = @element.append \div
       ..attr \class \items
       ..style \height "#{@fields.length * @itemHeight}px"
     self = @
-    @items = itemsContainer.selectAll \.item .data @fields .enter!append \div
+    @items = @itemsContainer.selectAll \.item .data @fields .enter!append \div
       ..attr \class "item"
       ..append \h3
         ..append \span
@@ -113,7 +113,9 @@ class ig.InfoBar
     selectedIndex = null
     for field in @fields
       if !field.isDojezd
-        field.index = index++
+        field.index = index
+        if feature.data?[field.codeToField]
+          index++
       if field.defaultIndex is @selectedFieldIndex
         selectedIndex = field.index
     if @selectedFieldIndex >= 2
@@ -123,7 +125,15 @@ class ig.InfoBar
       centering = @optimalOffset - futureOffset
     else
       centering = 0
-    @items.style \top ~> "#{paddingTop + centering + it.index * @itemHeight}px"
+    if @locked
+      @itemsContainer.style \height "#{index * @itemHeight + paddingTop}px"
+      centering = 0
+    else
+      @itemsContainer.style \height "#{@fields.length * @itemHeight + paddingTop}px"
+
+    @items
+      ..classed \hidden ~> !feature.data?[it.codeToField]
+      ..style \top ~> "#{paddingTop + centering + it.index * @itemHeight}px"
     @itmCount.html ~>
       return "&ndash;" if not feature.data
       ig.utils.formatNumber feature.data[it.codeToField]
