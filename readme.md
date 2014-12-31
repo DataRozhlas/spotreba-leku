@@ -1,0 +1,1 @@
+[Podívejte se, kam a proč vyjíždějí pražské sanitky, a jak dlouho jim to trvá](http://www.rozhlas.cz/zpravy/data/_zprava/podivejte-se-kam-a-proc-vyjizdeji-prazske-sanitky-a-jak-dlouho-jim-to-trva--1434589)
